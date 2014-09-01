@@ -22,7 +22,8 @@ _SetClipboardData TrueSetClipboardData = (_SetClipboardData)
 HANDLE WINAPI HookSetClipboardData(_In_ UINT uFormat, _In_opt_ HANDLE hMem)
 {
 	// log clipboard formats to file
-	FILE *file = fopen("c:\\windows\\temp\\clipformats.txt", "a");
+	FILE *file;
+	fopen_s(&file, "c:\\windows\\temp\\clipformats.txt", "a+");
 	if (file != NULL)
 	{
 		fprintf(file, "Format: %d\n", uFormat);
